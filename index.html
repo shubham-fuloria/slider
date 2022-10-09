@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <main>
+    <div class="sliders">
+      <img class='slide' src='https://picsum.photos/400/200?q=1'>
+      <img class='slide' src='https://picsum.photos/400/200?q=2'>
+      <img class='slide' src='https://picsum.photos/400/200?q=3'>
+      <img class='slide' src='https://picsum.photos/400/200?q=4'>
+    </div>
+    <div style="text-align: center;">
+      <button onclick="goPrev()">Prev</button><button onclick="goNext()">Next</button>
+    </div>
+  </main>
+
+</body>
+<style>
+  .sliders {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    height: 400px;
+    overflow: hidden
+  }
+
+  .slide {
+    transition: 1s ease-in-out;
+    height: 100%;
+    position: absolute;
+    width: 100%
+  }
+</style>
+
+
+
+</html>
+
+<script>
+  let counter = 0
+  const slides = document.querySelectorAll('.slide')
+  slides.forEach((slide, index) => {
+    slide.style.left = `${index * 100}%`
+    console.log(slide)
+  })
+
+  const goPrev = () => {
+    counter = counter == 0 ? 3 : counter - 1
+    slideImage()
+  }
+
+  const goNext = () => {
+    counter = counter == 3 ? 0 : counter + 1
+    slideImage();
+  }
+  const slideImage = () => {
+    slides.forEach(slide => slide.style.transform = `translateX(-${counter * 100}%`)
+  }
+
+  setInterval(() => {
+    goNext()
+  }, 2000)
+
+</script>
